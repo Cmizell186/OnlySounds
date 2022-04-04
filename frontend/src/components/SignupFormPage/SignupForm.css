@@ -1,0 +1,12 @@
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50%;
+    margin-left: 50%;
+}
+button{
+    width: 10vw;
+    border-radius: 5px;
+}

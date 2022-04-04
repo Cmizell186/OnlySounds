@@ -1,0 +1,14 @@
+.navBar{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.navButtons{
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+li{
+    list-style-type: none;
+}
