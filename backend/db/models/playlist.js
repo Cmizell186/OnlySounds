@@ -8,7 +8,10 @@ module.exports = (sequelize, DataTypes) => {
   PlayList.associate = function(models) {
     // associations can be defined here
     PlayList.belongsTo(models.User, {foreignKey: 'userId'});
-    PlayList.hasMany(models.PlayListSong, {foreignKey: 'playListId'});
+    PlayList.belongsToMany(models.Song, {
+      through: 'PlayListSong',
+      foreignKey: 'playListId'
+    })
   };
   return PlayList;
 };
