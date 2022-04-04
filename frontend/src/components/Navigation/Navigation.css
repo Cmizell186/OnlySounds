@@ -1,7 +1,6 @@
 .navBar{
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: row;
 }
 .navButtons{
     text-decoration: none;

@@ -1,0 +1,8 @@
+.songList{
+    display: flex;
+    flex-direction: row;
+}
+
+.individual-song{
+    color: black;
+}

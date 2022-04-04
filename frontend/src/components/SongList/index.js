@@ -1,10 +1,10 @@
 import React from 'react';
-
+import './SongList.css';
 function SongList({ songList }) {
     return (
-        <ul>
+        <ul className='songList'>
             {songList.map((ele, idx) => (
-                <li key={idx}>{ele?.imageUrl}{ele?.title}</li>
+                <li className='individual-song' key={idx}>{ele?.imageUrl}{ele?.title}</li>
             ))}
         </ul>
     )

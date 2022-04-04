@@ -8,7 +8,7 @@ import { getAllSongs } from "./store/songs";
 
 // components
 // import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
+// import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/Navigation";
 import Audio from './components/AudioPlayer';
 import SongList from "./components/SongList";
@@ -30,11 +30,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route exact path="/">
-            <h1>{songs[0]?.title}</h1>
+          <Route path="/discover">
             <SongList songList={songs}/>
           </Route>
         </Switch>
