@@ -5,9 +5,11 @@ const { User } = require('../../db/models');
 
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
+const songQueryRouter = require('./songs.js');
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
+router.use('/songs', songQueryRouter);
 
 
 
