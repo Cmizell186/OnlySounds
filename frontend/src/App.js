@@ -23,7 +23,7 @@ function App() {
   }, [dispatch]);
 
   const songs = useSelector(state => state.song.songs)
-  console.log(songs);
+  // console.log(songs);
 
   return (
     <>

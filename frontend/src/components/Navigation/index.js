@@ -24,12 +24,15 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <ul className='navBar'>
-            <li>
-                <NavLink exact to="/discover" className="navButtons">Home</NavLink>
+        <div id="navBar">
+            <NavLink exact to="/" className="homeButton">Home</NavLink>
+            <div>
+                <h1 className='onlysounds-title'>OnlySounds</h1>
+            </div>
+            <div className='navButtons'>
                 {isLoaded && sessionLinks}
-            </li>
-        </ul>
+            </div>
+        </div>
     )
 }
 export default Navigation;
