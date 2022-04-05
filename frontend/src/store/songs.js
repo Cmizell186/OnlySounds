@@ -4,21 +4,21 @@ const SET_SONG = 'songs/setSong';
 const REMOVE_SONG = 'songs/removeSong';
 const GET_SONG = 'songs/getSong';
 
-const getSong = (data) =>{
+const getSong = (data) => {
     return {
         type: GET_SONG,
         payload: data
     }
 }
 
-const setSong = (song) =>{
+const setSong = (song) => {
     return {
         type: SET_SONG,
         payload: song,
     }
 }
 
-const removeSong = (songId) =>{
+const removeSong = (songId) => {
     return {
         type: REMOVE_SONG,
         songId
@@ -27,7 +27,7 @@ const removeSong = (songId) =>{
 
 // redux thunk actions
 
-export const getAllSongs = () => async dispatch =>{
+export const getAllSongs = () => async dispatch => {
     const res = await csrfFetch('/api/songs')
 
     const songsList = await res.json();
@@ -35,35 +35,33 @@ export const getAllSongs = () => async dispatch =>{
     dispatch(getSong(songsList));
 }
 
-export const createNewSong = (newSong) => async dispatch =>{
+export const createNewSong = (newSong) => async dispatch => {
     const request = {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
         },
-        body:JSON.stringify(newSong)
+        body: JSON.stringify(newSong)
     }
     const response = await csrfFetch(`/api/songs`, request);
 
-    if(response.ok){
-        console.log('you hit this')
-        const song = await response.json();
-        dispatch(setSong(song))
-    }
+    const song = await response.json();
+    dispatch(setSong(song))
+    return song;
 }
 // initial state
 
-const initialState = {songs:[]};
+const initialState = { songs: [] };
 
-const songReducer = (state= initialState, action) =>{
+const songReducer = (state = initialState, action) => {
     let newState;
-    switch(action.type){
+    switch (action.type) {
         case GET_SONG:
-            newState = {...state};
+            newState = { ...state };
             newState.songs = action.payload
             return newState;
         case SET_SONG:
-            newState= Object.assign({}, state);
+            newState = Object.assign({}, state);
             newState.song = action.payload;
             return newState;
         case REMOVE_SONG:

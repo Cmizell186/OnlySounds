@@ -16,6 +16,7 @@ const validateSong = [
         .withMessage('Please provide a valid title.'),
     check('songUrl')
         .exists({ checkFalsy: true })
+        .isURL()
         .withMessage('Please provide a valid songUrl'),
     handleValidationErrors
 ];
@@ -28,8 +29,10 @@ router.post('/',  validateSong,asyncHandler(async (req, res) => {
 
     if(validationErrors.isEmpty()){
         await song.save();
+        return res.json('success');
     } else {
         const errors = validationErrors.array().map(error=> error.msg);
+        return res.json(errors);
     }
 }))
 

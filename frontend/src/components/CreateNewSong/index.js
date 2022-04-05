@@ -9,6 +9,7 @@ function CreateNewSong() {
     const [title, setTitle] = useState('');
     const [songUrl, setSongUrl] = useState('');
     const [imageUrl, setImageUrl] = useState('');
+    const [errors, setErrors] = useState([]);
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -24,17 +25,21 @@ function CreateNewSong() {
         };
 
         let createdSong = await dispatch(createNewSong(newSong));
-        if (createdSong) {
-            history.push(`/discover`)
-            return (
-                <Redirect to='/' />
-            )
+        if (createdSong === 'success') {
+            history.push('/discover')
+        } else {
+            setErrors(createdSong)
         }
     }
     if (sessionUser) {
         return (
             <div id="newSong-container">
                 <h1>🎧Upload Your Music🎧</h1>
+                <ul className='uploadErrors'>
+                    {errors.map((error, idx) => (
+                        <li key={idx}>{error}</li>
+                    ))}
+                </ul>
                 <form className='temp' onSubmit={handleSubmit}>
                     <input
                         type='text'
