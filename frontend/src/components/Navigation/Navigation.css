@@ -25,6 +25,11 @@
     color: #00A5DF;
 }
 
+.homeButton:hover{
+    transition: 1s;
+    color:#FFFFFF;
+}
+
 /* log in button */
 .loginButton{
     text-decoration: none;
@@ -53,4 +58,10 @@
     padding-right: 10px;
     font-weight: 100;
     font-style: italic;
+}
+
+
+/* profilebutton css */
+.fa-id-card{
+    color:#FFFFFF;
 }
