@@ -35,6 +35,22 @@ export const getAllSongs = () => async dispatch =>{
     dispatch(getSong(songsList));
 }
 
+export const createNewSong = (newSong) => async dispatch =>{
+    const request = {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify(newSong)
+    }
+    const response = await csrfFetch(`/api/songs`, request);
+
+    if(response.ok){
+        console.log('you hit this')
+        const song = await response.json();
+        dispatch(setSong(song))
+    }
+}
 // initial state
 
 const initialState = {songs:[]};

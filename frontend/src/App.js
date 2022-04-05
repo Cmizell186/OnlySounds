@@ -12,6 +12,7 @@ import { getAllSongs } from "./store/songs";
 import Navigation from "./components/Navigation";
 import Audio from './components/AudioPlayer';
 import SongList from "./components/SongList";
+import CreateNewSong from "./components/CreateNewSong";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
         <Switch>
           <Route path="/discover">
             <SongList songList={songs}/>
+          </Route>
+          <Route path='/newsong'>
+            <CreateNewSong />
           </Route>
         </Switch>
       )}
