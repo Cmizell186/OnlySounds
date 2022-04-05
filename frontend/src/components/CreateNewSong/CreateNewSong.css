@@ -4,3 +4,21 @@
     display: flex;
     flex-direction: column;
 }
+
+
+
+/* CSS FOR CREATE NEW SONG BUTTON ON NAV BAR (DONT TOUCH UNLESS EDIT STYLE FOR NAV) */
+a:hover{
+    transition: 1s;
+    background-color: #2B5B6C;
+}
+
+.newSongNavbutton{
+    text-decoration: none;
+    color: #00A5DF;
+}
+
+.newSongNavbutton:hover{
+    transition: 1s;
+    color:#FFFFFF;
+}
