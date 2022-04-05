@@ -70,7 +70,7 @@ function Audio({ song }) {
 
   return (
     <div className="audio-player">
-      <audio ref={audioPlayer} src={song[1]?.songUrl}></audio>
+      <audio ref={audioPlayer} src={song[2]?.songUrl}></audio>
       <button>last song</button>
       <button onClick={togglePlayPause}>{playing ? "pause" : "play"}</button>
       <button>skip song</button>
