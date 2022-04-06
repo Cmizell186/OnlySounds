@@ -35,6 +35,14 @@ export const getAllSongs = () => async dispatch => {
     dispatch(getSong(songsList));
 }
 
+export const getSpecificSong = (id) => async dispatch =>{
+    const response = await csrfFetch(`/api/songs/${id}`);
+
+    const song = await response.json();
+    dispatch(getSong(song));
+    return song;
+}
+
 export const createNewSong = (newSong) => async dispatch => {
     const request = {
         method: 'POST',
@@ -58,14 +66,14 @@ const songReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SONG:
             newState = { ...state };
-            newState.songs = action.payload
+            newState.songs = action.payload;
             return newState;
         case SET_SONG:
-            newState = Object.assign({}, state);
+            newState = {...state}
             newState.song = action.payload;
             return newState;
         case REMOVE_SONG:
-            newState = Object.assign({}, state);
+            newState = {...state};
             newState.song = null;
             return newState;
         default:
