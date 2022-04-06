@@ -91,7 +91,7 @@ function Audio({ song }) {
 
       {/* duration */}
       <div className="duration">
-        {duration && !isNaN(duration) && time(duration)}
+        {!isNaN(duration)? time(duration) : "0:00"}
       </div>
     </div>
   );
