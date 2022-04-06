@@ -27,19 +27,19 @@ function CreateNewSong() {
         let createdSong = await dispatch(createNewSong(newSong));
         if (createdSong === 'success') {
             history.push('/discover')
-        } else if (!createdSong) {
-            setErrors(createdSong.errors)
         }
+        setErrors(createdSong)
     }
+
+
     if (sessionUser) {
         return (
             <div id="newSong-container">
                 <h1>🎧Upload Your Music🎧</h1>
                 <form className='temp' onSubmit={handleSubmit}>
                     <ul className='uploadErrors'>
-                        <li>SEE ERRORS BELOW</li>
                         {errors && errors.map((err, idx) => (
-                            <li key={idx}>{err}hi there</li>
+                            <li key={idx}>{err}</li>
                         ))}
                     </ul>
                     <input

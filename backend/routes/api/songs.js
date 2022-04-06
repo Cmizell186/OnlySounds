@@ -25,7 +25,6 @@ const validateSong = [
         .notEmpty()
         .isURL()
         .withMessage('Please provide a valid imageUrl.'),
-    handleValidationErrors
 ];
 
 // CREATE functionallity
@@ -37,9 +36,8 @@ router.post('/', validateSong, asyncHandler(async (req, res) => {
     if (validationErrors.isEmpty()) {
         await song.save();
         return res.json('success');
-    } else if(validationErrors){
+    } else{
         const errors = validationErrors.array().map(error => error.msg);
-        console.log(errors, "++++++++++");
         return res.json(errors);
     }
 }))
