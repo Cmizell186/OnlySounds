@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import * as sessionActions from "./store/session";
-
 // thunk imports
 import { getAllSongs } from "./store/songs";
 
@@ -18,14 +17,16 @@ function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const songs = useSelector(state => state.song.songs)
+  const sessionUser = useSelector(state => state.session.user);
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser())
       .then(() => setIsLoaded(true));
     dispatch(getAllSongs())
-  }, [dispatch]);
+  }, [dispatch, songs.length, sessionUser]);
 
-  const songs = useSelector(state => state.song.songs)
+
   // console.log(songs);
 
   return (
@@ -33,9 +34,11 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          {sessionUser ?
           <Route path="/discover">
-            <SongList songList={songs}/>
-          </Route>
+            <SongList songList={songs} />
+          </Route> :
+          <Redirect to='/error'></Redirect>}
           <Route path='/newsong'>
             <CreateNewSong />
           </Route>

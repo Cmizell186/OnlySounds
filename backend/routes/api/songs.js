@@ -12,26 +12,32 @@ const router = express.Router();
 const validateSong = [
     check('title')
         .exists({ checkFalsy: true })
-        .isLength({ max: 150 })
+        .notEmpty()
+        .isLength({ max: 150, min:5 })
         .withMessage('Please provide a valid title.'),
     check('songUrl')
         .exists({ checkFalsy: true })
+        .notEmpty()
         .isURL()
-        .withMessage('Please provide a valid songUrl'),
-    handleValidationErrors
+        .withMessage('Please provide a valid songUrl.'),
+    check('imageUrl')
+        .exists({checkFalsy: true})
+        .notEmpty()
+        .isURL()
+        .withMessage('Please provide a valid imageUrl.'),
 ];
 
 // CREATE functionallity
-router.post('/',  validateSong,asyncHandler(async (req, res) => {
-    const {userId,title, imageUrl, songUrl} = req.body;
-    const song = Song.build({userId, title, imageUrl, songUrl});
-    const validationErrors = validationResult(req);
+router.post('/', validateSong, asyncHandler(async (req, res) => {
+    const { userId, title, imageUrl, songUrl } = req.body;
+    const song = Song.build({ userId, title, imageUrl, songUrl });
+    let validationErrors = validationResult(req);
 
-    if(validationErrors.isEmpty()){
+    if (validationErrors.isEmpty()) {
         await song.save();
         return res.json('success');
-    } else {
-        const errors = validationErrors.array().map(error=> error.msg);
+    } else{
+        const errors = validationErrors.array().map(error => error.msg);
         return res.json(errors);
     }
 }))
@@ -45,8 +51,26 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json(songsList);
 }))
 
+
+router.get('/:id', asyncHandler(async (req, res) => { //specific song page
+    const id = req.params.id;
+    const song = await Song.findByPk(id)
+    return res.json(song);
+}))
+
 // UPDATE functionallity
+router.put(`/:id`, asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const song = await Song.update(req.body, {
+        where: { id: id }
+    });
+    return res.json(song);
+}))
 
 // DELETE functionallity
+
+router.delete(`/:id`, asyncHandler(async (req, res) => { // delete specific song
+
+}))
 
 module.exports = router;
