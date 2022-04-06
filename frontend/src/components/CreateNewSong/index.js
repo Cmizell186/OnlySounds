@@ -23,12 +23,14 @@ function CreateNewSong() {
             imageUrl,
             songUrl
         };
-        setErrors([]);
+
+
         let createdSong = await dispatch(createNewSong(newSong));
         if (createdSong === 'success') {
             history.push('/discover')
+        } else {
+            setErrors(createdSong)
         }
-        setErrors(createdSong)
     }
 
 

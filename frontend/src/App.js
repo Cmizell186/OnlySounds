@@ -17,16 +17,16 @@ function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const songs = useSelector(state => state.song.songs)
+  const sessionUser = useSelector(state => state.session.user);
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser())
       .then(() => setIsLoaded(true));
     dispatch(getAllSongs())
-  }, [dispatch]);
+  }, [dispatch, songs.length, sessionUser]);
 
-  const songs = useSelector(state => state.song.songs)
-  const sessionUser = useSelector(state => state.session.user);
-  const history = useHistory();
+
   // console.log(songs);
 
   return (
@@ -37,7 +37,8 @@ function App() {
           {sessionUser ?
           <Route path="/discover">
             <SongList songList={songs} />
-          </Route> : <Redirect to='/error'></Redirect>}
+          </Route> :
+          <Redirect to='/error'></Redirect>}
           <Route path='/newsong'>
             <CreateNewSong />
           </Route>
