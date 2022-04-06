@@ -12,19 +12,19 @@ const router = express.Router();
 const validateSong = [
     check('title')
         .exists({ checkFalsy: true })
-        .notEmpty()
+        .withMessage('Please provide a valid title.')
         .isLength({ max: 150, min: 5 })
-        .withMessage('Please provide a valid title.'),
-    check('songUrl')
-        .exists({ checkFalsy: true })
-        .notEmpty()
-        .isURL()
-        .withMessage('Please provide a valid songUrl.'),
+        .withMessage('Must have more than 5 characters, less that 150 characters.'),
     check('imageUrl')
         .exists({ checkFalsy: true })
-        .notEmpty()
+        .withMessage('Please provide a imageUrl.')
         .isURL()
-        .withMessage('Please provide a valid imageUrl.'),
+        .withMessage('Input must be a URL for image.'),
+    check('songUrl')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a songUrl.')
+        .isURL()
+        .withMessage('Input must be a URL for song'),
 ];
 
 // CREATE functionallity
@@ -38,6 +38,7 @@ router.post('/', validateSong, requireAuth, asyncHandler(async (req, res) => {
         return res.json(song);
     } else {
         const errors = validationErrors.array().map(error => error.msg);
+        // res.status('400');
         return res.json(errors);
     }
 }))
@@ -72,7 +73,7 @@ router.put(`/:id`, requireAuth, asyncHandler(async (req, res) => {
 router.delete(`/:id`, requireAuth, asyncHandler(async (req, res) => { // delete specific song
     const id = req.params.id;
     const song = await Song.findByPk(id);
-    if(!song) return res.json('song does not exist');
+    if (!song) return res.json('song does not exist');
     song.destroy()
     return res.json('success');
 }))
