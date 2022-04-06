@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
-import { createNewSong } from '../../store/songs';
+import { createNewSong, getAllSongs } from '../../store/songs';
 import './CreateNewSong.css';
 
 function CreateNewSong() {
@@ -26,7 +26,6 @@ function CreateNewSong() {
 
 
         let createdSong = await dispatch(createNewSong(newSong));
-        console.log(Array.isArray(createdSong));
         if (!Array.isArray(createdSong)) {
             history.push('/discover')
         }
@@ -39,11 +38,6 @@ function CreateNewSong() {
             <div id="newSong-container">
                 <h1>🎧Upload Your Music🎧</h1>
                 <form className='temp' onSubmit={handleSubmit}>
-                    <ul className='uploadErrors'>
-                        {errors && errors.map((err, idx) => (
-                            <li key={idx}>{err}</li>
-                        ))}
-                    </ul>
                     <input
                         type='text'
                         name="title"
@@ -69,6 +63,11 @@ function CreateNewSong() {
                         className='songUrl-input'
                     />
                     <button type='submit' className='submit-song-button'>Upload New Song</button>
+                    <ul className='uploadErrors'>
+                        {errors && errors.map((err, idx) => (
+                            <li key={idx}>{err}</li>
+                        ))}
+                    </ul>
                 </form>
             </div>
         )
