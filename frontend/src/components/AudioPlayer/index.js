@@ -1,6 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useSelector } from 'react-redux';
 import "./AudioPlayer.css";
-function Audio({ song }) {
+function Audio() {
+  // selectors
+  const playingSong = useSelector(state => state.song.playingSong);
+
   // useStates
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -69,17 +73,19 @@ function Audio({ song }) {
   };
 
   return (
-    <div className="audio-player">
-      <audio ref={audioPlayer} src={song[2]?.songUrl}></audio>
-      <button>last song</button>
-      <button onClick={togglePlayPause}>{playing ? "pause" : "play"}</button>
-      <button>skip song</button>
+    <header className="audio-player">
+      <audio ref={audioPlayer} src={playingSong.songUrl}></audio>
+      <div className="play-pause-button-container">
+        <button className='pause-play-button' onClick={togglePlayPause}>{playing ? "pause" : "play"}</button>
+      </div>
+
 
       {/* current time */}
       <div className="current-time">{time(currentTime)}</div>
 
+
       {/* audio range */}
-      <div>
+      <div className="audio-range-container">
         <input
           className="audio-range"
           type="range"
@@ -91,9 +97,17 @@ function Audio({ song }) {
 
       {/* duration */}
       <div className="duration">
-        {!isNaN(duration)? time(duration) : "0:00"}
+        {!isNaN(duration) ? time(duration) : "0:00"}
       </div>
-    </div>
+
+      {/* current song title */}
+      <div className="current-song-container">
+        <p className="current-song">{playingSong.title ? playingSong.title : 'no song selected'}</p>
+        <p className="current-song-user"></p>
+      </div>
+
+
+    </header>
   );
 }
 

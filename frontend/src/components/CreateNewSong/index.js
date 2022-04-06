@@ -26,11 +26,11 @@ function CreateNewSong() {
 
 
         let createdSong = await dispatch(createNewSong(newSong));
-        if (createdSong === 'success') {
+        console.log(Array.isArray(createdSong));
+        if (!Array.isArray(createdSong)) {
             history.push('/discover')
-        } else {
-            setErrors(createdSong)
         }
+        setErrors(createdSong)
     }
 
 
