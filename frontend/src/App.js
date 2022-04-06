@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, Route, Switch, useParams } from "react-router-dom";
+import { Redirect, Route, Switch} from "react-router-dom";
 import * as sessionActions from "./store/session";
 // thunk imports
-import { getAllSongs } from "./store/songs";
 
 // components
 // import LoginFormPage from "./components/LoginFormPage";
@@ -22,12 +21,12 @@ function App() {
   // console.log({id});
   useEffect(() => {
     dispatch(sessionActions.restoreUser())
-      .then(() => setIsLoaded(true));
+      .then(() => setIsLoaded(true))
     }, [dispatch]);
 
-  useEffect(() =>{
-    dispatch(getAllSongs())
-  },[dispatch])
+  // useEffect(() =>{
+  //   dispatch(getAllSongs())
+  // },[dispatch])
 
 
   // console.log(songs);
@@ -39,7 +38,7 @@ function App() {
         <Switch>
           {sessionUser ?
           <Route path="/discover">
-            <SongList songList={songs} />
+            <SongList />
           </Route> :
           <Redirect to='/error'></Redirect>}
           <Route path='/newsong'>

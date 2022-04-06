@@ -1,42 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 /* audio bar */
-.audio-player{
+
+header {
+  background-color: #27272B;
+  margin: 0;
+}
+
+.audio-player {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   position: fixed;
   bottom: 20px;
-  margin-bottom: 20px;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-bottom: -20px;
+  padding-left: 25%;
+  padding-right: 25%;
+
+  background-color: #27272B;
+  width: 50vw;
+  height: 10vh;
 }
 
 
 .audio-range {
-    --bar-bg: grey;
-    --seek-before-width: 0;
-    --seek-before-color: red;
-    --knobby: #3452a5;
-    --selectedKnobby: #26c9c3;
+  --bar-bg: grey;
+  --seek-before-width: 0;
+  /* --seek-before-color: #2B5B6C; */
+  --knobby: #3452a5;
+  --selectedKnobby: #26c9c3;
 
-    appearance: none;
-    background: var(--bar-bg);
-    border-radius: 10px;
-    position: relative;
-    width: 100%;
-    height: 11px;
-    outline: none;
-  }
-  .audio-range::before {
-    content: "";
-    height: 11px;
-    width: var(--seek-before-width);
-    background-color: var(--seek-before-color);
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    cursor: pointer;
-  }
+  appearance: none;
+  background: var(--bar-bg);
+  border-radius: 10px;
+  width: 100%;
+  height: 11px;
+  outline: none;
+}
+
+.audio-range::before {
+  content: "";
+  height: 11px;
+  width: var(--seek-before-width);
+  background-color: var(--seek-before-color);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+
+  
+  cursor: pointer;
+}
+
+
+/* current song container */
+
+.current-song {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: flex-end;
+  color: white;
+}
+
+.pause-play-button {
+  font-family: 'Poppins', sans-serif;
+
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: #26c9c3;
+}

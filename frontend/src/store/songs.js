@@ -3,6 +3,15 @@ import { csrfFetch } from "./csrf";
 const SET_SONG = 'songs/setSong';
 const REMOVE_SONG = 'songs/removeSong';
 const GET_SONG = 'songs/getSong';
+const GET_SONGS = 'songs/getSongs';
+const PLAY_SONG = 'songs/playSong';
+
+const getSongs = (data) =>{
+    return {
+        type: GET_SONGS,
+        payload:data
+    }
+}
 
 const getSong = (data) => {
     return {
@@ -25,6 +34,21 @@ const removeSong = (songId) => {
     };
 };
 
+const playSong = (songId) =>{
+    return {
+        type: PLAY_SONG,
+        payload: songId
+    }
+}
+
+export const playingSong = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/songs/${id}`);
+
+    const song = await response.json();
+    dispatch(playSong(song));
+    return song;
+}
+
 // redux thunk actions
 
 export const getAllSongs = () => async dispatch => {
@@ -32,7 +56,7 @@ export const getAllSongs = () => async dispatch => {
 
     const songsList = await res.json();
 
-    dispatch(getSong(songsList));
+    dispatch(getSongs(songsList));
 }
 
 export const getSpecificSong = (id) => async dispatch =>{
@@ -57,24 +81,46 @@ export const createNewSong = (newSong) => async dispatch => {
     dispatch(setSong(song))
     return song;
 }
+
+export const deleteSpecificSong = (id) => async dispatch =>{
+    const request = {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(id)
+    }
+    const response = await csrfFetch(`/api/songs/${id}`, request)
+
+    const deleteSong = await response.json();
+    dispatch(removeSong(deleteSong))
+}
 // initial state
 
-const initialState = { songs: [] };
+const initialState = { songs: [], currentSong:{}, playingSong:{}};
 
 const songReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case GET_SONG:
             newState = { ...state };
+            newState.currentSong = action.payload;
+            return newState;
+        case GET_SONGS:
+            newState = {...state};
             newState.songs = action.payload;
             return newState;
         case SET_SONG:
             newState = {...state}
-            newState.song = action.payload;
+            newState.songs = action.payload;
             return newState;
         case REMOVE_SONG:
             newState = {...state};
-            newState.song = null;
+            newState.songs = action.payload;
+            return newState;
+        case PLAY_SONG:
+            newState = {...state};
+            newState.playingSong = action.payload;
             return newState;
         default:
             return state;

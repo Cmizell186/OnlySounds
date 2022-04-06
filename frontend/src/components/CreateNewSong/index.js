@@ -26,7 +26,7 @@ function CreateNewSong() {
 
 
         let createdSong = await dispatch(createNewSong(newSong));
-        if (createdSong === 'success') {
+        if (createdSong) {
             history.push('/discover')
         } else {
             setErrors(createdSong)

@@ -35,7 +35,7 @@ router.post('/', validateSong, requireAuth, asyncHandler(async (req, res) => {
 
     if (validationErrors.isEmpty()) {
         await song.save();
-        return res.json('success');
+        return res.json(song);
     } else {
         const errors = validationErrors.array().map(error => error.msg);
         return res.json(errors);
@@ -72,7 +72,7 @@ router.put(`/:id`, requireAuth, asyncHandler(async (req, res) => {
 router.delete(`/:id`, requireAuth, asyncHandler(async (req, res) => { // delete specific song
     const id = req.params.id;
     const song = await Song.findByPk(id);
-
+    if(!song) return res.json('song does not exist');
     song.destroy()
     return res.json('success');
 }))
