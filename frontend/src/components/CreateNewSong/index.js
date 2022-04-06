@@ -23,24 +23,25 @@ function CreateNewSong() {
             imageUrl,
             songUrl
         };
-
+        setErrors([]);
         let createdSong = await dispatch(createNewSong(newSong));
         if (createdSong === 'success') {
             history.push('/discover')
-        } else {
-            setErrors(createdSong)
+        } else if (!createdSong) {
+            setErrors(createdSong.errors)
         }
     }
     if (sessionUser) {
         return (
             <div id="newSong-container">
                 <h1>🎧Upload Your Music🎧</h1>
-                <ul className='uploadErrors'>
-                    {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
-                    ))}
-                </ul>
                 <form className='temp' onSubmit={handleSubmit}>
+                    <ul className='uploadErrors'>
+                        <li>SEE ERRORS BELOW</li>
+                        {errors && errors.map((err, idx) => (
+                            <li key={idx}>{err}hi there</li>
+                        ))}
+                    </ul>
                     <input
                         type='text'
                         name="title"
@@ -71,7 +72,7 @@ function CreateNewSong() {
         )
     } else {
         return (
-            <Redirect to='/'/>
+            <Redirect to='/' />
         )
     }
 }

@@ -29,17 +29,17 @@ const validateSong = [
 ];
 
 // CREATE functionallity
-router.post('/', validateSong, requireAuth, asyncHandler(async (req, res) => {
+router.post('/', validateSong, asyncHandler(async (req, res) => {
     const { userId, title, imageUrl, songUrl } = req.body;
     const song = Song.build({ userId, title, imageUrl, songUrl });
-    const validationErrors = validationResult(req);
+    let validationErrors = validationResult(req);
 
     if (validationErrors.isEmpty()) {
         await song.save();
         return res.json('success');
-    } else {
+    } else if(validationErrors){
         const errors = validationErrors.array().map(error => error.msg);
-        console.log(errors)
+        console.log(errors, "++++++++++");
         return res.json(errors);
     }
 }))

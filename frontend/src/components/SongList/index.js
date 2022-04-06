@@ -1,15 +1,16 @@
 import React from 'react';
 import './SongList.css';
+import {NavLink} from 'react-router-dom';
 function SongList({ songList }) {
     return (
-        <ul className='songList'>
+        <div className='songList'>
             {songList.map((ele, idx) => (
-                <li className='individual-song' key={idx}>
+                <NavLink to={`/songs/${ele.id}`} className='individual-song' key={idx}>
                 {ele?.title}
-                <img src={ele?.imageUrl}></img>
-                </li>
+                <img src={ele?.imageUrl} alt='temp'></img>
+                </NavLink>
             ))}
-        </ul>
+        </div>
     )
 }
 
