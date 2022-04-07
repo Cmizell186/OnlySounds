@@ -62,10 +62,11 @@ router.get('/:id', requireAuth, asyncHandler(async (req, res) => { //specific so
 
 // UPDATE functionallity
 router.put(`/:id`, requireAuth, asyncHandler(async (req, res) => {
-    const id = req.params.id;
-    const song = await Song.update(req.body, {
-        where: { id: id }
-    });
+    const {id, title, imageUrl} = req.body;
+    const song = await Song.findByPk(id);
+    song.title = title;
+    song.imageUrl = imageUrl;
+    await song.save();
     return res.json(song);
 }))
 

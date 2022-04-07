@@ -12,6 +12,7 @@ import Audio from './components/AudioPlayer';
 import SongList from "./components/SongList";
 import CreateNewSong from "./components/CreateNewSong";
 import SpecificSong from "./components/SpecificSongPage";
+import UpdateSong from './components/UpdateSong/index';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route path={`/songs/:id`}>
             <SpecificSong />
+          </Route>
+          <Route path={`/editsong/:id`}>
+            <UpdateSong />
           </Route>
         </Switch>
       )}
