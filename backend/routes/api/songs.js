@@ -73,7 +73,7 @@ router.put(`/:id`, requireAuth, asyncHandler(async (req, res) => {
 // DELETE functionallity
 
 router.delete(`/:id`, requireAuth, asyncHandler(async (req, res) => { // delete specific song
-    const id = req.params.id;
+    const {id} = req.body;
     const song = await Song.findByPk(id);
     if (!song) return res.json('song does not exist');
     song.destroy()

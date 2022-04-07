@@ -5,6 +5,7 @@ import { getSpecificSong, playingSong } from "../../store/songs";
 import './SpecificSongPage.css';
 import image from '../../images/default-album-art.png';
 import EditSong from '../UpdateSong/UpdateSongNavLink';
+import DeleteSong from '../DeleteSong/index';
 function SpecificSong() {
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function SpecificSong() {
             <>
                 <p>{sessionUser}</p>
                 <EditSong id={currSong.id} />
+                <DeleteSong id={currSong.id}/>
             </>
                 :
             <></>}
