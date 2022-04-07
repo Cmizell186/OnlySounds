@@ -41,6 +41,8 @@ const playSong = (songId) =>{
     }
 }
 
+
+// redux thunk actions
 export const playingSong = (id) => async dispatch => {
     const response = await csrfFetch(`/api/songs/${id}`);
 
@@ -49,14 +51,12 @@ export const playingSong = (id) => async dispatch => {
     return song;
 }
 
-// redux thunk actions
-
 export const getAllSongs = () => async dispatch => {
     const res = await csrfFetch('/api/songs')
 
     const songsList = await res.json();
-
     dispatch(getSongs(songsList));
+    console.log(songsList, "-getAllSongs-");
 }
 
 export const getSpecificSong = (id) => async dispatch =>{
@@ -65,6 +65,20 @@ export const getSpecificSong = (id) => async dispatch =>{
     const song = await response.json();
     dispatch(getSong(song));
     return song;
+}
+export const editSpecificSong = (song) => async dispatch =>{
+    const request = {
+        method: 'PUT',
+        header: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(song)
+    }
+    const response = await csrfFetch(`/api/songs/${song.id}`, request)
+
+    const editedSong = await response.json();
+    dispatch(setSong(editedSong));
+    return editedSong;
 }
 
 export const createNewSong = (newSong) => async dispatch => {

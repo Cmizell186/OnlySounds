@@ -49,6 +49,7 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
     const songsList = await Song.findAll({
         include: 'User'
     })
+    // res.redirect('/discover')
     return res.json(songsList);
 }))
 
@@ -61,17 +62,18 @@ router.get('/:id', requireAuth, asyncHandler(async (req, res) => { //specific so
 
 // UPDATE functionallity
 router.put(`/:id`, requireAuth, asyncHandler(async (req, res) => {
-    const id = req.params.id;
-    const song = await Song.update(req.body, {
-        where: { id: id }
-    });
+    const {id, title, imageUrl} = req.body;
+    const song = await Song.findByPk(id);
+    song.title = title;
+    song.imageUrl = imageUrl;
+    await song.save();
     return res.json(song);
 }))
 
 // DELETE functionallity
 
 router.delete(`/:id`, requireAuth, asyncHandler(async (req, res) => { // delete specific song
-    const id = req.params.id;
+    const {id} = req.body;
     const song = await Song.findByPk(id);
     if (!song) return res.json('song does not exist');
     song.destroy()
