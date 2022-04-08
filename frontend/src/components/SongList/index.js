@@ -18,13 +18,14 @@ function SongList() {
         <div className='songList'>
             {songList?.map((ele, idx) => (
                 <NavLink to={`/songs/${ele?.id}`} className='individual-song' key={idx}>
-                    <p>{ele?.title}</p>
+                    <p className='song-title'>{ele?.title}</p>
+                    <div className='songImage'>
                     {ele?.imageUrl ?
-                        <img src={ele?.imageUrl} height='150vh' width="150vw"></img>
+                        <img src={ele?.imageUrl} height='150vh' width="150vw" ></img>
                         :
                         <img src={image} height='150vh' width='150vw'></img>
                     }
-                    <p> {ele?.User.username}</p>
+                    </div>
                 </NavLink>
             ))}
         </div>

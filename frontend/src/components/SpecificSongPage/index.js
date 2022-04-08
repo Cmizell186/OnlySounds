@@ -22,7 +22,7 @@ function SpecificSong() {
     }
     return (
         <div className="song-info-container">
-            <h1>{currSong?.title}</h1>
+            <h1 className="song-title">{currSong?.title}</h1>
             <div className="image-container">
                 <div className='fa-solid fa-play fa-4x' onClick={() => handleCLick(currSong.id)}></div>
                 {currSong.imageUrl ?
@@ -34,7 +34,7 @@ function SpecificSong() {
             {sessionUser?
             <>
                 <p>{sessionUser}</p>
-                <EditSong id={currSong.id} />
+                <EditSong id={currSong.id} className='edit-song-button'/>
                 <DeleteSong id={currSong.id}/>
             </>
                 :

@@ -1,0 +1,57 @@
+#update-song-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.update-song-form{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50vw;
+}
+
+.title-change-input{
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    color: #27272B ;
+    background-color: #FFFFFF;
+    width: 50vw;
+    height: 5vh;
+}
+
+.title-change-input:focus{
+    transition: 1s;
+    background-color: #27272B;
+    color: #00A5DF;
+}
+
+.imageUrl-change-input{
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    color: #27272B ;
+    background-color: #FFFFFF;
+    width: 50vw;
+    height: 5vh;
+}
+.imageUrl-change-input:focus{
+    transition: 1s;
+    background-color: #27272B;
+    color: #00A5DF;
+}
+
+.edit-song-btn{
+    border: none;
+    background-color: #00A5DF;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    width: 15vw;
+    height: 5vh;
+}
+
+.edit-song-btn:hover{
+    transition: .5s;
+    box-shadow: 0 0 15px #27272B;
+}

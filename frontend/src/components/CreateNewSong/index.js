@@ -36,8 +36,8 @@ function CreateNewSong() {
     if (sessionUser) {
         return (
             <div id="newSong-container">
-                <h1>🎧Upload Your Music🎧</h1>
-                <form className='temp' onSubmit={handleSubmit}>
+                <h1 className='upload-title'>🎧Upload Your Music🎧</h1>
+                <form className='newSong-form' onSubmit={handleSubmit}>
                     <input
                         type='text'
                         name="title"

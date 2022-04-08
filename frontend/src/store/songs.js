@@ -126,7 +126,7 @@ const songReducer = (state = initialState, action) => {
             return newState;
         case SET_SONG:
             newState = {...state}
-            newState.songs = action.payload;
+            newState.songs = newState.songs.concat(action.payload);
             return newState;
         case REMOVE_SONG:
             newState = {...state};

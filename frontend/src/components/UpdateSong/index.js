@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { editSpecificSong } from "../../store/songs";
@@ -21,12 +21,11 @@ function UpdateSong() {
         }
         const song = await dispatch(editSpecificSong(updatedSong))
 
-        if (song) {
-            history.push(`/songs/${currSong.id}`)
-        }
+        history.push(`/songs/${currSong.id}`)
     }
     return (
-        <div className="update-song-container">
+        <div id="update-song-container">
+            <h1 className="edit-song-title">🎧Edit Song🎧</h1>
             <form className="update-song-form" onSubmit={handleClick}>
                 <input
                     type='text'
@@ -34,6 +33,7 @@ function UpdateSong() {
                     placeholder="Change Title"
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}
+                    className='title-change-input'
                 />
                 <input
                     type='url'
@@ -41,8 +41,9 @@ function UpdateSong() {
                     placeholder="Change Image Url"
                     onChange={(e) => setImageUrl(e.target.value)}
                     value={imageUrl}
+                    className='imageUrl-change-input'
                 />
-                <button type='submit'>Edit Song</button>
+                <button type='submit' className="edit-song-btn">Edit Song</button>
             </form>
         </div>
     )

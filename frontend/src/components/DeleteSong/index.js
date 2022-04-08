@@ -14,14 +14,13 @@ function DeleteSong({id}) {
             id: id
         }
         const deleteSong = await dispatch(deleteSpecificSong(song))
-        if(deleteSong === 'success'){
-            history.push('/discover');
-        }
+
+        history.push('/discover');
     }
 
     return (
         <div>
-            <button type='submit' onClick={handleClick}>Delete Song</button>
+            <div onClick={handleClick} className='delete-song'>Delete Song</div>
         </div>
     )
 }

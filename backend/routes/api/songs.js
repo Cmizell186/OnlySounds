@@ -30,7 +30,7 @@ const validateSong = [
 // CREATE functionallity
 router.post('/', validateSong, requireAuth, asyncHandler(async (req, res) => {
     const { userId, title, imageUrl, songUrl } = req.body;
-    const song = Song.build({ userId, title, imageUrl, songUrl });
+    const song = Song.build({ userId, title, imageUrl, songUrl});
     let validationErrors = validationResult(req);
 
     if (validationErrors.isEmpty()) {

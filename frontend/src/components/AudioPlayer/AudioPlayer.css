@@ -47,7 +47,7 @@ header {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 
-  
+
   cursor: pointer;
 }
 
@@ -68,4 +68,13 @@ header {
   background-color: transparent;
   cursor: pointer;
   color: #26c9c3;
+}
+
+
+.duration{
+  color: white;
+}
+
+.current-time{
+  color: white;
 }
