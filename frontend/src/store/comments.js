@@ -24,7 +24,20 @@ const deleteComment = (data) =>{
 }
 
 // thunk functions
+export const createNewComment = (newComment) => async dispatch =>{
+    const request = {
+        method: "POST",
+        header: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(newComment)
+    }
+    const response = await csrfFetch(`/api/comments`, request)
 
+    const comment = await response.json();
+    dispatch(setComment(comment));
+    return comment;
+}
 
 
 const initialState = {comments:{}}

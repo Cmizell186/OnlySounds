@@ -38,7 +38,6 @@ router.post('/', validateSong, requireAuth, asyncHandler(async (req, res) => {
         return res.json(song);
     } else {
         const errors = validationErrors.array().map(error => error.msg);
-        // res.status('400');
         return res.json(errors);
     }
 }))
