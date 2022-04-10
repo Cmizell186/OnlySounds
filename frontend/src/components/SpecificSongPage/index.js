@@ -6,6 +6,8 @@ import './SpecificSongPage.css';
 import image from '../../images/default-album-art.png';
 import EditSong from '../UpdateSong/UpdateSongNavLink';
 import DeleteSong from '../DeleteSong/index';
+import CommentsArea from "../CommentsSection/index";
+import NewComment from '../CommentsSection/CreateComment'
 function SpecificSong() {
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -31,14 +33,19 @@ function SpecificSong() {
                     <img src={image} height='150vh' width='150vw' onClick={() => handleCLick(currSong.id)}></img>
                 }
             </div>
-            {sessionUser?
-            <>
-                <p>{sessionUser}</p>
-                <EditSong id={currSong.id} className='edit-song-button'/>
-                <DeleteSong id={currSong.id}/>
-            </>
+            {sessionUser ?
+                <>
+                    {/* <p>{sessionUser}</p> */}
+                    <EditSong id={currSong.id} className='edit-song-button' />
+                    <DeleteSong id={currSong.id} />
+                </>
                 :
-            <></>}
+                <></>}
+            {/* comments section */}
+            <div>
+                <NewComment user={sessionUser} />
+                <CommentsArea user={sessionUser} />
+            </div>
         </div>
     )
 }

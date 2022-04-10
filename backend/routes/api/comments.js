@@ -15,7 +15,7 @@ const validateComment = [
         .withMessage('Max character count of 280'),
 ]
 
-router.post('/', validateComment, asyncHandler(async(req,res) =>{
+router.post('/:id', validateComment,asyncHandler(async(req,res) =>{
     const {userId, songId, description} = req.body;
     const comment = Comment.build({userId, songId, description});
     const validatorErrors = validationResult(req);
@@ -29,3 +29,17 @@ router.post('/', validateComment, asyncHandler(async(req,res) =>{
     }
 
 }))
+
+
+router.get('/:id', asyncHandler(async (req,res) =>{
+    const id = req.params.id;
+    const comment = await Comment.findAll({
+        where: {
+            songId: id
+        },
+        include: 'User'
+    })
+    return res.json(comment);
+}))
+
+module.exports = router;

@@ -48,7 +48,7 @@ router.get('/', requireAuth, asyncHandler(async (req, res) => {
     const songsList = await Song.findAll({
         include: 'User'
     })
-    // res.redirect('/discover')
+
     return res.json(songsList);
 }))
 

@@ -6,11 +6,12 @@ const { User } = require('../../db/models');
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const songQueryRouter = require('./songs.js');
+const commentRouter = require('./comments');
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/songs', songQueryRouter);
-
+router.use('/comments', commentRouter);
 
 
 router.get('/set-token-cookie', asyncHandler(async (_req, res) => {
