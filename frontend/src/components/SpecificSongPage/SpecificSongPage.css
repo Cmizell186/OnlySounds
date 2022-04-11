@@ -44,13 +44,113 @@ img:hover{
 .edit-song-button{
     text-decoration: none;
     color: #00A5DF;
+    width: 5vw;
+
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
 }
+.edit-song-button:hover{
+    transition: .5s;
+    box-shadow: 0 0 3px black;
+}
+
 .delete-song{
     border: none;
     background-color: #27272B;
     border-radius: 4px;
     width: 5vw;
     cursor: pointer;
-    color: #2B5B6C;
+    color: white;
     font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+
+}
+.delete-song:hover{
+    transition: .5s;
+    color: white;
+    background-color: red;
+}
+
+
+/* create comment area */
+.create-comment-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-top: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.comment-text-input{
+    width: 30vw;
+    height: 8vh;
+    color: #27272B;
+    border: none;
+    background-color: #FFFFFF;
+}
+
+
+.create-comment-button{
+    text-decoration: none;
+    color: #00A5DF;
+    width: 5vw;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+
+
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.create-comment-button:hover{
+    transition: .3s;
+    box-shadow: 0 0 3px black;
+}
+
+/* comments section */
+
+.comments-section{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    border: 1px solid black;
+
+    margin-bottom: 200px;
+}
+
+.individual-comment{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+
+.delete-comment-button{
+    border: none;
+    background-color: #27272B;
+    border-radius: 4px;
+    width: 5vw;
+    cursor: pointer;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+.delete-comment-button:hover{
+    transition: .5s;
+    color: white;
+    background-color: red;
 }
