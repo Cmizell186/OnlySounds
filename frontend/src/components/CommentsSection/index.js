@@ -6,8 +6,13 @@ import { getAllComments } from '../../store/comments';
 
 function CommentsArea({ user }) {
     const [isLoaded, setIsLoaded] = useState(false);
-    const { id } = useParams()
-    const commentList = useSelector(state =>state.comments.comments);
+    const { id } = useParams();
+    const commentList = useSelector(state =>state.song.songs);
+    // console.log(Object.values(commentList))
+    let filtered = Object.values(commentList).filter(comment =>{
+        return comment.id === +id
+    })
+    console.log(filtered);
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -16,7 +21,7 @@ function CommentsArea({ user }) {
     },[dispatch])
     return (
         <div className='comments-section'>
-            {isLoaded && commentList?.map((comment,idx) => (
+            {isLoaded && filtered[0].Comments?.map((comment,idx) => (
                 <div key={idx} className='individual-comment'>
                     <p>{comment?.User.username}</p>
                     <p>{comment?.description}</p>

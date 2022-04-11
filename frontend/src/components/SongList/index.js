@@ -16,7 +16,7 @@ function SongList() {
 
     return (
         <div className='songList'>
-            {songList?.map((ele, idx) => (
+            {Object.values(songList)?.map((ele, idx) => (
                 <NavLink to={`/songs/${ele?.id}`} className='individual-song' key={idx}>
                     <p className='song-title'>{ele?.title}</p>
                     <div className='songImage'>

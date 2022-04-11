@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createNewComment } from "../../store/comments";
+import {getAllSongs} from '../../store/songs';
 
 function NewComment(){
     const [description, setDescription] = useState('');
     const {id} = useParams();
     const dispatch = useDispatch();
-    const user = (state => state.session.user);
+    const user = useSelector(state => state.session.user);
 
 
 
@@ -16,10 +17,12 @@ function NewComment(){
         const newComment = {
             songId: id,
             userId: user.id,
-            body:description
+            description:description
         }
         dispatch(createNewComment(newComment))
-            .then(() => setDescription(''));
+        dispatch(getAllSongs())
+
+        setDescription('');
     }
 
     return(

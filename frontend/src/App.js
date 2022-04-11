@@ -53,7 +53,7 @@ function App() {
           </Route>
         </Switch>
       )}
-      <Audio song={songs} />
+      <Audio />
     </>
   );
 }

@@ -27,7 +27,6 @@ router.post('/:id', validateComment,asyncHandler(async(req,res) =>{
         const errors = validatorErrors.array().map(error => error.msg)
         return res.json(errors);
     }
-
 }))
 
 

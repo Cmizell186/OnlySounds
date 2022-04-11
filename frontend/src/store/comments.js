@@ -33,7 +33,7 @@ export const createNewComment = (newComment) => async dispatch => {
     const response = await csrfFetch(`/api/comments/${newComment.songId}`, request)
 
     const comment = await response.json();
-    dispatch(getAllComments(comment.songId));
+    dispatch(getComments(comment.id));
     return comment;
 }
 
