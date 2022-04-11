@@ -41,4 +41,18 @@ router.get('/:id', asyncHandler(async (req,res) =>{
     return res.json(comment);
 }))
 
+
+router.delete('/:id', asyncHandler(async(req,res) =>{
+    const {commentId} = req.body;
+    const comment = await Comment.findByPk(commentId);
+
+    if(comment){
+        comment.destroy()
+        res.json('deleted')
+    } else {
+        res.json('comment doesnt exist!')
+    }
+
+}))
+
 module.exports = router;

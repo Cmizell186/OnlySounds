@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-// import './SignupForm.css';
+import './SignupForm.css';
 function SignupForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -22,17 +22,16 @@ function SignupForm() {
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
-        }) && history.push('/discover')
+        })
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
+
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      <label>
+    <div className="signup-container">
+    <form onSubmit={handleSubmit} className='signup-form'>
+      <label className="singup-email">
         Email
         <input
           type="text"
@@ -41,7 +40,7 @@ function SignupForm() {
           required
         />
       </label>
-      <label>
+      <label className="signup-username">
         Username
         <input
           type="text"
@@ -50,7 +49,7 @@ function SignupForm() {
           required
         />
       </label>
-      <label>
+      <label className="signup-password">
         Password
         <input
           type="password"
@@ -59,7 +58,7 @@ function SignupForm() {
           required
         />
       </label>
-      <label>
+      <label className="signup-password">
         Confirm Password
         <input
           type="password"
@@ -68,8 +67,12 @@ function SignupForm() {
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button type="submit" className="signup-button">Sign Up</button>
+      <ul className="signup-errors">
+        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+      </ul>
     </form>
+    </div>
   );
 }
 

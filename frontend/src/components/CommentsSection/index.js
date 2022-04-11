@@ -3,13 +3,14 @@ import './CommentsSection.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getAllComments } from '../../store/comments';
-
+import DeleteComment from './DeleteComment';
 function CommentsArea({ user }) {
     const [isLoaded, setIsLoaded] = useState(false);
     const { id } = useParams();
-    const commentList = useSelector(state =>state.song.songs);
+    const commentList = useSelector(state => state.song.songs);
+    const sessionUser = useSelector(state => state.session.user);
     // console.log(Object.values(commentList))
-    let filtered = Object.values(commentList).filter(comment =>{
+    let filtered = Object.values(commentList).filter(comment => {
         return comment.id === +id
     })
     console.log(filtered);
@@ -18,13 +19,19 @@ function CommentsArea({ user }) {
     useEffect(() => {
         dispatch(getAllComments(id))
             .then(() => setIsLoaded(true))
-    },[dispatch])
+    }, [dispatch])
+
+
     return (
         <div className='comments-section'>
-            {isLoaded && filtered[0].Comments?.map((comment,idx) => (
+            {isLoaded && filtered[0].Comments?.map((comment, idx) => (
                 <div key={idx} className='individual-comment'>
                     <p>{comment?.User.username}</p>
                     <p>{comment?.description}</p>
+                    {comment?.User.id === sessionUser.id ?
+                        <DeleteComment songId={id} commentId={comment?.id}/> :
+                        null
+                    }
                 </div>
             ))}
         </div>

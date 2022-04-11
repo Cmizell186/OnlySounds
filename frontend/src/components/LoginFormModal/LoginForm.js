@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as sessionActions from "../../store/session";
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import './LoginForm.css';
 function LoginForm() {
     const dispatch = useDispatch();
     const [credential, setCredential] = useState('');
@@ -21,13 +21,8 @@ function LoginForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul>
-            <label>
+        <form onSubmit={handleSubmit} className='login-form'>
+            <label className='login-email'>
                 Username or Email
                 <input
                     type="text"
@@ -36,7 +31,7 @@ function LoginForm() {
                     required
                 />
             </label>
-            <label>
+            <label className='login-password'>
                 Password
                 <input
                     type="password"
@@ -45,7 +40,16 @@ function LoginForm() {
                     required
                 />
             </label>
-            <button type="submit">Log In</button>
+            <button type="submit" className='login-button'>Log In</button>
+            <button onClick={e => {
+                setCredential("Demo-lition");
+                setPassword("password");
+            }} type="submit" className='login-demo-button'>Demo User</button>
+            <ul>
+                {errors.map((error, idx) => (
+                    <li key={idx}>{error}</li>
+                ))}
+            </ul>
         </form>
     )
 }

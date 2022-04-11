@@ -48,9 +48,8 @@ export const deleteSpecificComment = (comment) => async dispatch => {
     const response = await csrfFetch(`/api/comments/${comment.commentId}`, request)
 
     const deletedComment = await response.json();
-    if (deletedComment){
-        dispatch(getComments(comment.songId))
-    }
+    dispatch(getComments(comment.id))
+    return deletedComment;
 }
 
 

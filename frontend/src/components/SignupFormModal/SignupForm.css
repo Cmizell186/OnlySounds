@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    width: 50vh;
+    height: 35vh;
+}
+
+.singup-email{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.singup-email > input {
+    border: 1px solid #003057;
+    background-color: white;
+    width: 20vw;
+}
+.singup-email >input:focus{
+    transition: .5s;
+    background-color: #00A5DF;
+}
+
+
+.signup-username{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.signup-username > input{
+    border: 1px solid #003057;
+    background-color: white;
+
+    width: 20vw;
+}
+.signup-username >input:focus{
+    transition: .5s;
+    background-color: #00A5DF;
+}
+
+
+.signup-password{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.signup-password > input{
+    border: 1px solid #003057;
+    background-color: white;
+    width: 20vw;
+}
+.signup-password >input:focus{
+    transition: .5s;
+    background-color: #00A5DF;
+}
+
+.signup-errors{
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-button{
+    display: flex;
+    flex-direction: row;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    align-items: center;
+    width: 100px;
+    color: #00A5DF;
+    background-color: #27272B;
+    cursor: pointer;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 54px;
+}

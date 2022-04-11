@@ -1,0 +1,12 @@
+.splash-holder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.onlySounds-image-container > img{
+    margin-top: 25%;
+    width: 25vw;
+    border-radius: 999px;
+}
