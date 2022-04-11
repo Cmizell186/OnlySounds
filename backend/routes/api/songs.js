@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const { check, validationResult } = require('express-validator');
-const { Song } = require('../../db/models');
+const { Song, Comment, User } = require('../../db/models');
 
 
 const router = express.Router();
@@ -38,7 +38,6 @@ router.post('/', validateSong, requireAuth, asyncHandler(async (req, res) => {
         return res.json(song);
     } else {
         const errors = validationErrors.array().map(error => error.msg);
-        // res.status('400');
         return res.json(errors);
     }
 }))
@@ -47,16 +46,26 @@ router.post('/', validateSong, requireAuth, asyncHandler(async (req, res) => {
 router.get('/', requireAuth, asyncHandler(async (req, res) => {
     // get all songs from db
     const songsList = await Song.findAll({
-        include: 'User'
+        include: {
+            model: Comment,
+            include: {
+              model: User
+            }
+          }
     })
-    // res.redirect('/discover')
+
     return res.json(songsList);
 }))
 
 
 router.get('/:id', requireAuth, asyncHandler(async (req, res) => { //specific song page
     const id = req.params.id;
-    const song = await Song.findByPk(id)
+    const song = await Song.findOne({
+        where: {
+            id
+        },
+        include: [User, Comment]
+    })
     return res.json(song);
 }))
 
@@ -73,7 +82,8 @@ router.put(`/:id`, requireAuth, asyncHandler(async (req, res) => {
 // DELETE functionallity
 
 router.delete(`/:id`, requireAuth, asyncHandler(async (req, res) => { // delete specific song
-    const {id} = req.body;
+    const id = req.params.id;
+    console.log(id);
     const song = await Song.findByPk(id);
     if (!song) return res.json('song does not exist');
     song.destroy()

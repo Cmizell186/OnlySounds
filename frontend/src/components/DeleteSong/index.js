@@ -3,7 +3,6 @@ import { useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {deleteSpecificSong} from '../../store/songs';
 function DeleteSong({id}) {
-    console.log(id);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -13,7 +12,8 @@ function DeleteSong({id}) {
         const song = {
             id: id
         }
-        const deleteSong = await dispatch(deleteSpecificSong(song))
+        console.log(id, song);
+        dispatch(deleteSpecificSong(song.id))
 
         history.push('/discover');
     }

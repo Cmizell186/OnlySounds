@@ -56,7 +56,6 @@ export const getAllSongs = () => async dispatch => {
 
     const songsList = await res.json();
     dispatch(getSongs(songsList));
-    console.log(songsList, "-getAllSongs-");
 }
 
 export const getSpecificSong = (id) => async dispatch =>{
@@ -97,21 +96,16 @@ export const createNewSong = (newSong) => async dispatch => {
 }
 
 export const deleteSpecificSong = (id) => async dispatch =>{
-    const request = {
-        method: 'DELETE',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(id)
+    const response = await csrfFetch(`/api/songs/${id}`,{
+        method: "DELETE"
+    })
+    if(response.ok){
+        dispatch(removeSong(id))
     }
-    const response = await csrfFetch(`/api/songs/${id}`, request)
-
-    const deleteSong = await response.json();
-    dispatch(removeSong(deleteSong))
 }
 // initial state
 
-const initialState = { songs: [], currentSong:{}, playingSong:{}};
+const initialState = { songs: {}, currentSong:{}, playingSong:{}};
 
 const songReducer = (state = initialState, action) => {
     let newState;
@@ -120,17 +114,27 @@ const songReducer = (state = initialState, action) => {
             newState = { ...state };
             newState.currentSong = action.payload;
             return newState;
-        case GET_SONGS:
-            newState = {...state};
-            newState.songs = action.payload;
+        case GET_SONGS:{
+            const newState = {...state};
+            const songs = {};
+            // newState.songs = action.payload;
+            action.payload.forEach(song => songs[song.id] = song);
+            newState.songs = songs;
             return newState;
-        case SET_SONG:
-            newState = {...state}
-            newState.songs = newState.songs.concat(action.payload);
+        }
+        case SET_SONG:{
+            const newState = {...state}
+            const songs = {...state.songs}
+            songs[action.payload.id] = action.payload
+            newState.songs = songs;
+            // newState.songs = newState.songs.concat(action.payload);
             return newState;
+        }
         case REMOVE_SONG:
             newState = {...state};
-            newState.songs = action.payload;
+            const songs = {...state.songs};
+            delete songs[action.songId];
+            newState.songs = songs;
             return newState;
         case PLAY_SONG:
             newState = {...state};
