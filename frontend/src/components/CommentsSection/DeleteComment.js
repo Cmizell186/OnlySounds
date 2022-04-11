@@ -15,7 +15,7 @@ function DeleteComment({commentId, songId}) {
         dispatch(getAllSongs())
     }
     return (
-        <button onClick={onClick}>Delete</button>
+        <button onClick={onClick} className="delete-comment-button">Delete</button>
     )
 }
 

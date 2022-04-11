@@ -27,14 +27,15 @@ function NewComment() {
 
     return (
         <div className="new-comment-input">
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => handleSubmit(e)} className="create-comment-form">
                 <input
                     type='text'
                     onChange={(e) => setDescription(e.target.value)}
                     value={description}
                     placeholder='new comment'
+                    className="comment-text-input"
                 />
-                <button type='submit'>POST</button>
+                <button type='submit' className="create-comment-button">POST</button>
             </form>
         </div>
     )
