@@ -7,8 +7,12 @@
     margin-right: 15%;
 }
 
-a{
+.songList a{
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .individual-song{
@@ -24,7 +28,7 @@ a{
 
     margin-left: 5px;
     margin-right: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 /* .song-title{

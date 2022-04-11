@@ -2,6 +2,12 @@
     display: flex;
     flex-direction: column;
 }
+.edit-song-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 
 .update-song-form{
     display: flex;

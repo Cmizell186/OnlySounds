@@ -1,3 +1,4 @@
+
 .splash-holder{
     display: flex;
     flex-direction: column;
@@ -9,4 +10,16 @@
     margin-top: 25%;
     width: 25vw;
     border-radius: 999px;
+    cursor: default;
+}
+
+.profile-links > a{
+    text-decoration: none;
+}
+.fa-brands{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    text-decoration: none;
+    color: black;
 }
