@@ -75,6 +75,7 @@ To get a local copy up and running follow these simple example steps.
 ## Contact
 
 Project Link: [https://github.com/Cmizell186/OnlySounds](https://github.com/Cmizell186/OnlySounds)
+Live Site: [OnlySounds](https://onlysounds.herokuapp.com/)
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
