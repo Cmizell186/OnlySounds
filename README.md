@@ -1,8 +1,33 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+## Splash Page
 ![frontpagescreenshot](https://user-images.githubusercontent.com/90157662/162717914-aa851377-6379-4958-a39b-915f4555d9df.JPG)
+
+## Home Page
 ![songselectionss](https://user-images.githubusercontent.com/90157662/162728669-61272b1b-adf8-4454-944f-a854fcefc3d2.JPG)
+
+## Upload Music Page
+This page allows user to upload a new song with a valid imageUrl and songUrl.
+
+![image](https://user-images.githubusercontent.com/90157662/171748442-815c9873-41a8-4ff3-8072-9891787c174f.png)
+
+## Specific Song Page
+This page allows user to play the song and leave a comment on the song.
+
+![image](https://user-images.githubusercontent.com/90157662/171748647-f4996c63-7c04-42fd-bae9-23bd9e5af37c.png)
+
+## Edit Song Page
+This page allows user to edit Song Title and Song Image
+
+![image](https://user-images.githubusercontent.com/90157662/171748803-17f2f515-f999-4483-84e8-41c9918850ea.png)
+
+## Delete Song button
+On Song SPecific Page, if user owned, Delete Song button shows. When clicked song is deleted and redirects user back to home page.
+
+![image](https://user-images.githubusercontent.com/90157662/171748859-9a35e6cb-10dd-4fe4-9f58-25d953001d4d.png)
+
+
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
