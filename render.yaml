@@ -17,5 +17,5 @@ services:
           property: connectionString
 
 databases: # Render PostgreSQL database
-  - name: postgresql-transparent-49561
+  - name: onlysounds-database-postgresql
     ipAllowList: [] # only allow internal connections
